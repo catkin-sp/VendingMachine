@@ -42,9 +42,4 @@ namespace MoneyController
 			_serialPort.Dispose();
 		}
 	}
-
-	public class SerialPortBlockReceivedEventHandlerArgs
-	{
-		public string DataBlock { get; set; }
-	}
 }
