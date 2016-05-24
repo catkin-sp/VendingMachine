@@ -1,6 +1,6 @@
 ﻿namespace VendingMachine
 {
-	partial class Form1
+	partial class VendingMachineMainForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -30,6 +30,7 @@
 		{
 			this.label1 = new System.Windows.Forms.Label();
 			this.labelCoins = new System.Windows.Forms.Label();
+			this.listBoxReceived = new System.Windows.Forms.ListBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -50,15 +51,24 @@
 			this.labelCoins.TabIndex = 1;
 			this.labelCoins.Text = "label2";
 			// 
-			// Form1
+			// listBoxReceived
+			// 
+			this.listBoxReceived.FormattingEnabled = true;
+			this.listBoxReceived.Location = new System.Drawing.Point(16, 82);
+			this.listBoxReceived.Name = "listBoxReceived";
+			this.listBoxReceived.Size = new System.Drawing.Size(222, 121);
+			this.listBoxReceived.TabIndex = 2;
+			// 
+			// VendingMachineMainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(282, 253);
+			this.ClientSize = new System.Drawing.Size(668, 394);
+			this.Controls.Add(this.listBoxReceived);
 			this.Controls.Add(this.labelCoins);
 			this.Controls.Add(this.label1);
-			this.Name = "Form1";
-			this.Text = "Form1";
+			this.Name = "VendingMachineMainForm";
+			this.Text = "VendingMachineMainForm";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -69,6 +79,7 @@
 
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label labelCoins;
+		private System.Windows.Forms.ListBox listBoxReceived;
 	}
 }
 
