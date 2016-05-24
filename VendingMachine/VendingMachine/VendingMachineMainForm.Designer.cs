@@ -31,6 +31,7 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.labelCoins = new System.Windows.Forms.Label();
 			this.listBoxReceived = new System.Windows.Forms.ListBox();
+			this.checkBoxAcceptMoney = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -56,14 +57,26 @@
 			this.listBoxReceived.FormattingEnabled = true;
 			this.listBoxReceived.Location = new System.Drawing.Point(16, 82);
 			this.listBoxReceived.Name = "listBoxReceived";
-			this.listBoxReceived.Size = new System.Drawing.Size(222, 121);
+			this.listBoxReceived.Size = new System.Drawing.Size(628, 290);
 			this.listBoxReceived.TabIndex = 2;
+			// 
+			// checkBoxAcceptMoney
+			// 
+			this.checkBoxAcceptMoney.AutoSize = true;
+			this.checkBoxAcceptMoney.Location = new System.Drawing.Point(12, 41);
+			this.checkBoxAcceptMoney.Name = "checkBoxAcceptMoney";
+			this.checkBoxAcceptMoney.Size = new System.Drawing.Size(105, 19);
+			this.checkBoxAcceptMoney.TabIndex = 3;
+			this.checkBoxAcceptMoney.Text = "Accept money";
+			this.checkBoxAcceptMoney.UseVisualStyleBackColor = true;
+			this.checkBoxAcceptMoney.CheckedChanged += new System.EventHandler(this.checkBoxAcceptMoney_CheckedChanged);
 			// 
 			// VendingMachineMainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(668, 394);
+			this.Controls.Add(this.checkBoxAcceptMoney);
 			this.Controls.Add(this.listBoxReceived);
 			this.Controls.Add(this.labelCoins);
 			this.Controls.Add(this.label1);
@@ -80,6 +93,7 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label labelCoins;
 		private System.Windows.Forms.ListBox listBoxReceived;
+		private System.Windows.Forms.CheckBox checkBoxAcceptMoney;
 	}
 }
 

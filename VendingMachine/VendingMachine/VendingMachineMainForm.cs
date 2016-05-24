@@ -60,5 +60,10 @@ namespace VendingMachine
 				listBoxReceived.Items.RemoveAt(100);
 			}
 		}
+
+		private void checkBoxAcceptMoney_CheckedChanged(object sender, System.EventArgs e)
+		{
+			_moneyController.Enabled = checkBoxAcceptMoney.Checked;
+		}
 	}
 }

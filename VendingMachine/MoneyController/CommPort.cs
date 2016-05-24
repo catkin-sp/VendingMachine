@@ -19,7 +19,7 @@ namespace MoneyController
 		public CommPort(string portName, ICommunicaitonLog log)
 		{
 			_log = log;
-			_serialPort = new SerialPort(portName) {BaudRate = 19600};
+			_serialPort = new SerialPort(portName) {BaudRate = 19200};
 			_serialPort.Open();
 			_serialPort.DataReceived += serialPort_DataReceived;
 		}
