@@ -4,16 +4,21 @@ namespace VendingMachine
 {
 	internal class CommunicationLog : ICommunicaitonLog
 	{
-		private readonly VendingMachineMainForm _vendingMachineMainForm;
-
-		public CommunicationLog(VendingMachineMainForm vendingMachineMainForm)
-		{
-			_vendingMachineMainForm = vendingMachineMainForm;
-		}
+		public event InfoMessageReceivedHandler MessageReceived;
 
 		public void Info(string message)
 		{
-			_vendingMachineMainForm.AddInfo(message);
-		}
+			MessageReceived?.Invoke(this, new InfoMessageReceivedHandlerArgs
+			{
+				Info = message
+			});
+        }
+	}
+
+	internal delegate void InfoMessageReceivedHandler(object sender, InfoMessageReceivedHandlerArgs args);
+
+	internal class InfoMessageReceivedHandlerArgs
+	{
+		public string Info { get; set; }
 	}
 }

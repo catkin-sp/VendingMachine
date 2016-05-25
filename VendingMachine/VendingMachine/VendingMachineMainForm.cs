@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO.Ports;
 using System.Windows.Forms;
 using MoneyController;
 using MoneyController.Interfaces;
@@ -17,10 +19,18 @@ namespace VendingMachine
 			InitializeComponent();
 			ShowCoins();
 
-            _comPort = new CommPort("COM1", new CommunicationLog(this));
+			var log = new CommunicationLog();
+			log.MessageReceived += Log_MessageReceived;
+            _comPort = new CommPort(log);
 			_moneyController = new MoneyController.MoneyController(_comPort, GetChannelMapping());
 			_moneyController.MoneyReceived += MoneyControllerMoneyReceived;
         }
+
+		private void Log_MessageReceived(object sender, InfoMessageReceivedHandlerArgs args)
+		{
+			//AddInfo(args.Info);
+			Console.WriteLine(args.Info);
+		}
 
 		private static Dictionary<int, decimal> GetChannelMapping()
 		{
@@ -64,6 +74,31 @@ namespace VendingMachine
 		private void checkBoxAcceptMoney_CheckedChanged(object sender, System.EventArgs e)
 		{
 			_moneyController.Enabled = checkBoxAcceptMoney.Checked;
+		}
+
+		private void VendingMachineMainForm_Load(object sender, System.EventArgs e)
+		{
+			comboBoxPorts.Items.AddRange(SerialPort.GetPortNames());
+			comboBoxPorts.SelectedIndex = 0;
+		}
+
+		private void buttonStart_Click(object sender, System.EventArgs e)
+		{
+			_comPort.Open(comboBoxPorts.Text);
+			EnablePortControls();
+		}
+
+		private void EnablePortControls()
+		{
+			buttonStart.Enabled = !_comPort.IsOpen();
+			buttonStop.Enabled = _comPort.IsOpen();
+			comboBoxPorts.Enabled = !_comPort.IsOpen();
+		}
+
+		private void buttonStop_Click(object sender, System.EventArgs e)
+		{
+			_comPort.Close();
+			EnablePortControls();
 		}
 	}
 }

@@ -6,5 +6,8 @@ namespace MoneyController.Interfaces
 	{
 		event SerialPortBlockReceivedEventHandler BlockReceived;
 		void Send(string command);
+		void Open(string port);
+		void Close();
+		bool IsOpen();
 	}
 }

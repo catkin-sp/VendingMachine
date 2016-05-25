@@ -30,11 +30,11 @@ namespace MoneyController
 
 		private void OnBlockReceived()
 		{
-			var commands = Regex.Split(_dataBuffer, @"<\d\d>");
+			var commands = Regex.Matches(_dataBuffer, @"<\d\d>");
 
-			if (commands.Any())
+			if (commands.Count > 0)
 			{
-				ProcessCommand(commands.Last());
+				ProcessCommand(commands[commands.Count - 1].Value);
 			}
 
 			if (_dataBuffer.Length > 100)
@@ -45,8 +45,8 @@ namespace MoneyController
 
 		private void ProcessCommand(string command)
 		{
-			var commandIndex = Convert.ToInt32(command[1]);
-			var channel = Convert.ToInt32(command[2]);
+			var commandIndex = Convert.ToInt32(command.Substring(1, 1));
+			var channel = Convert.ToInt32(command.Substring(2, 1));
 
 			if (channel != 0)
 			{
