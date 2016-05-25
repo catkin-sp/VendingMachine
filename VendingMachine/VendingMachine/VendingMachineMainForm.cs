@@ -28,8 +28,8 @@ namespace VendingMachine
 
 		private void Log_MessageReceived(object sender, InfoMessageReceivedHandlerArgs args)
 		{
-			//AddInfo(args.Info);
-			Console.WriteLine(args.Info);
+			Action action = () => AddInfo(args.Info);
+			Invoke(action);
 		}
 
 		private static Dictionary<int, decimal> GetChannelMapping()
@@ -79,7 +79,16 @@ namespace VendingMachine
 		private void VendingMachineMainForm_Load(object sender, System.EventArgs e)
 		{
 			comboBoxPorts.Items.AddRange(SerialPort.GetPortNames());
-			comboBoxPorts.SelectedIndex = 0;
+
+			if (comboBoxPorts.Items.Count > 0)
+			{
+				comboBoxPorts.SelectedIndex = 0;
+			}
+			else
+			{
+				MessageBox.Show("No COM ports found on this PC.");
+				buttonStart.Enabled =  buttonStop.Enabled = comboBoxPorts.Enabled = false;
+			}
 		}
 
 		private void buttonStart_Click(object sender, System.EventArgs e)
