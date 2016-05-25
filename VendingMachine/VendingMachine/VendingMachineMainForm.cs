@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.IO.Ports;
 using System.Windows.Forms;
@@ -22,9 +23,16 @@ namespace VendingMachine
 			var log = new CommunicationLog();
 			log.MessageReceived += Log_MessageReceived;
             _comPort = new CommPort(log);
+			_comPort.PortStatusChanged += ComPortPortStatusChanged;
 			_moneyController = new MoneyController.MoneyController(_comPort, GetChannelMapping());
 			_moneyController.MoneyReceived += MoneyControllerMoneyReceived;
         }
+
+		private void ComPortPortStatusChanged(object sender, SerialPortStatusChangedEventHandlerArgs args)
+		{
+			Action action = () => ShowOnlineStatus(args.Online);
+			Invoke(action);
+		}
 
 		private void Log_MessageReceived(object sender, InfoMessageReceivedHandlerArgs args)
 		{
@@ -63,7 +71,7 @@ namespace VendingMachine
 
 		public void AddInfo(string message)
 		{
-			listBoxReceived.Items.Insert(0, message);
+			listBoxReceived.Items.Insert(0, $"{DateTime.Now.ToLongTimeString()} {message}");
 
 			if (listBoxReceived.Items.Count > 100)
 			{
@@ -93,6 +101,7 @@ namespace VendingMachine
 
 		private void buttonStart_Click(object sender, System.EventArgs e)
 		{
+			labelConnectionState.Text = string.Empty;
 			_comPort.Open(comboBoxPorts.Text);
 			EnablePortControls();
 		}
@@ -106,8 +115,23 @@ namespace VendingMachine
 
 		private void buttonStop_Click(object sender, System.EventArgs e)
 		{
+			labelConnectionState.Text = string.Empty;
 			_comPort.Close();
 			EnablePortControls();
+		}
+
+		private void ShowOnlineStatus(bool online)
+		{
+			if (online)
+			{
+				labelConnectionState.Text = "Online";
+				labelConnectionState.ForeColor = Color.Green;
+			}
+			else
+			{
+				labelConnectionState.Text = "Disconnected";
+				labelConnectionState.ForeColor = Color.Red;
+			}
 		}
 	}
 }

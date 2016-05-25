@@ -36,6 +36,7 @@
 			this.buttonStop = new System.Windows.Forms.Button();
 			this.comboBoxPorts = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
+			this.labelConnectionState = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -59,9 +60,9 @@
 			// listBoxReceived
 			// 
 			this.listBoxReceived.FormattingEnabled = true;
-			this.listBoxReceived.Location = new System.Drawing.Point(16, 82);
+			this.listBoxReceived.Location = new System.Drawing.Point(16, 121);
 			this.listBoxReceived.Name = "listBoxReceived";
-			this.listBoxReceived.Size = new System.Drawing.Size(628, 290);
+			this.listBoxReceived.Size = new System.Drawing.Size(628, 251);
 			this.listBoxReceived.TabIndex = 2;
 			// 
 			// checkBoxAcceptMoney
@@ -114,11 +115,21 @@
 			this.label2.TabIndex = 7;
 			this.label2.Text = "Port:";
 			// 
+			// labelConnectionState
+			// 
+			this.labelConnectionState.AutoSize = true;
+			this.labelConnectionState.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.labelConnectionState.Location = new System.Drawing.Point(247, 75);
+			this.labelConnectionState.Name = "labelConnectionState";
+			this.labelConnectionState.Size = new System.Drawing.Size(0, 29);
+			this.labelConnectionState.TabIndex = 8;
+			// 
 			// VendingMachineMainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(668, 394);
+			this.Controls.Add(this.labelConnectionState);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.comboBoxPorts);
 			this.Controls.Add(this.buttonStop);
@@ -146,6 +157,7 @@
 		private System.Windows.Forms.Button buttonStop;
 		private System.Windows.Forms.ComboBox comboBoxPorts;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label labelConnectionState;
 	}
 }
 

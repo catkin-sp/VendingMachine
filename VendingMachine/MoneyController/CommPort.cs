@@ -1,4 +1,5 @@
-﻿using System.IO.Ports;
+﻿using System;
+using System.IO.Ports;
 using System.Timers;
 using MoneyController.Interfaces;
 
@@ -8,16 +9,18 @@ namespace MoneyController
 	{
 		private readonly ICommunicaitonLog _log;
 		private readonly SerialPort _serialPort;
+		readonly Timer _timer = new Timer();
+		private DateTime _lastReceivedBlockTime = DateTime.MinValue;
+		private bool _online;
 
 		public event SerialPortBlockReceivedEventHandler BlockReceived;
+		public event SerialPortStatusChangedEventHandler PortStatusChanged;
 		
 		public void Send(string command)
 		{
 			_serialPort.WriteLine(command);
 			_log.Info($"Sent: {command}");
 		}
-		
-		Timer aTimer = new Timer();
 
 		public void Open(string port)
 		{
@@ -28,17 +31,24 @@ namespace MoneyController
 		
 			_serialPort.PortName = port;
 			_serialPort.Open();
+			_lastReceivedBlockTime = DateTime.MinValue;
+			_online = true;
 
-			//
-			aTimer.Elapsed += OnTimedEvent;
-			aTimer.Interval = 1000;
-			aTimer.Enabled = true;
+            _timer.Elapsed += OnTimedEvent;
+			_timer.Interval = 1000;
+			_timer.Enabled = true;
 		}
 
 		private void OnTimedEvent(object sender, ElapsedEventArgs e)
 		{
-			//aTimer.Enabled = false;
-			OnBlockReceived("<00>\n");
+			if ((_online || !IsOnline()) && (!_online || IsOnline())) return;
+			
+			_online = IsOnline();
+
+			PortStatusChanged?.Invoke(this, new SerialPortStatusChangedEventHandlerArgs
+			{
+				Online = _online
+			});
 		}
 
 		public void Close()
@@ -51,9 +61,14 @@ namespace MoneyController
 			return _serialPort.IsOpen;
 		}
 
+		private bool IsOnline()
+		{
+			return (DateTime.Now - _lastReceivedBlockTime).TotalSeconds < 5;
+		}
+
 		public CommPort(ICommunicaitonLog log)
 		{
-			_serialPort = new SerialPort { BaudRate = 19200 };
+			 _serialPort = new SerialPort { BaudRate = 19200 };
 			_log = log;
 			_serialPort.DataReceived += serialPort_DataReceived;
 		}
@@ -72,6 +87,8 @@ namespace MoneyController
 			{
 				DataBlock = block
 			});
+
+			_lastReceivedBlockTime = DateTime.Now;
 		}
 
 		public void Dispose()
