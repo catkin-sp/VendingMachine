@@ -9,7 +9,8 @@ namespace MoneyController
 	{
 		private readonly ICommunicaitonLog _log;
 		private readonly SerialPort _serialPort;
-		readonly Timer _timer = new Timer();
+		private readonly Timer _timer = new Timer();
+
 		private DateTime _lastReceivedBlockTime = DateTime.MinValue;
 		private bool _online;
 
@@ -31,6 +32,7 @@ namespace MoneyController
 		
 			_serialPort.PortName = port;
 			_serialPort.Open();
+
 			_lastReceivedBlockTime = DateTime.MinValue;
 			_online = true;
 

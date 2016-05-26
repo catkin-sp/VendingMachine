@@ -4,26 +4,30 @@ using System.Drawing;
 using System.Globalization;
 using System.IO.Ports;
 using System.Windows.Forms;
+using log4net;
+using log4net.Config;
 using MoneyController;
 using MoneyController.Interfaces;
 
 namespace VendingMachine
 {
-	public partial class VendingMachineMainForm : Form
+	public partial class VendingMachineMainForm : Form, ICommunicaitonLog
 	{
 		private readonly MoneyController.MoneyController _moneyController;
 		private readonly ICommPort _comPort;
 		private decimal _coins;
+		private static readonly ILog Logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 		public VendingMachineMainForm()
 		{
 			InitializeComponent();
 			ShowCoins();
 
-			var log = new CommunicationLog();
-			log.MessageReceived += Log_MessageReceived;
-            _comPort = new CommPort(log);
+			XmlConfigurator.Configure();
+
+			_comPort = new CommPort(this);
 			_comPort.PortStatusChanged += ComPortPortStatusChanged;
+			
 			_moneyController = new MoneyController.MoneyController(_comPort, GetChannelMapping());
 			_moneyController.MoneyReceived += MoneyControllerMoneyReceived;
         }
@@ -31,12 +35,6 @@ namespace VendingMachine
 		private void ComPortPortStatusChanged(object sender, SerialPortStatusChangedEventHandlerArgs args)
 		{
 			Action action = () => ShowOnlineStatus(args.Online);
-			Invoke(action);
-		}
-
-		private void Log_MessageReceived(object sender, InfoMessageReceivedHandlerArgs args)
-		{
-			Action action = () => AddInfo(args.Info);
 			Invoke(action);
 		}
 
@@ -122,16 +120,16 @@ namespace VendingMachine
 
 		private void ShowOnlineStatus(bool online)
 		{
-			if (online)
-			{
-				labelConnectionState.Text = "Online";
-				labelConnectionState.ForeColor = Color.Green;
-			}
-			else
-			{
-				labelConnectionState.Text = "Disconnected";
-				labelConnectionState.ForeColor = Color.Red;
-			}
+			labelConnectionState.Text = online ? "Online" : "Disconnected";
+			labelConnectionState.ForeColor = online ? Color.Green : Color.Red;
+		}
+
+		public void Info(string message)
+		{
+			Logger.Info(message);
+
+			Action action = () => AddInfo(message);
+			Invoke(action);
 		}
 	}
 }
