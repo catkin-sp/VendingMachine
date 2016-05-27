@@ -53,7 +53,7 @@ namespace MoneyController
 				OnMoneyReceived(channel);
 			}
 			
-			SendCommand(commandIndex);
+			SendCommand(commandIndex, channel);
 			
 			_dataBuffer = string.Empty;
 		}
@@ -68,9 +68,10 @@ namespace MoneyController
 			MoneyReceived?.Invoke(this, new MoneyReceivedEventHandlerArgs { Value = _moneyChannelMapping[channel] });
 		}
 
-		private void SendCommand(int commandIndex)
+		private void SendCommand(int commandIndex, int channel)
 		{
-			_port.Send($"<{commandIndex}{(Enabled?"O":"C")}>"); // Allow/deny accept money
+			var command = channel == 0 ? Enabled ? "O" : "C" : channel.ToString();
+			_port.Send($"<{commandIndex}{command}>"); // Allow/deny accept money
 		}
 	}
 }
