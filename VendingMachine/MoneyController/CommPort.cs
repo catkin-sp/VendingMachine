@@ -19,6 +19,11 @@ namespace MoneyController
 		
 		public void Send(string command)
 		{
+			if (!_serialPort.IsOpen)
+			{
+				return;
+			}
+
 			_serialPort.WriteLine(command);
 			_log.Info($"Sent: {command}");
 		}
@@ -95,7 +100,11 @@ namespace MoneyController
 
 		public void Dispose()
 		{
-			_serialPort.Close();
+			if (_serialPort.IsOpen)
+			{
+				_serialPort.Close();
+			}
+			
 			_serialPort.Dispose();
 		}
 	}

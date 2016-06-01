@@ -42,35 +42,40 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(13, 13);
+			this.label1.Location = new System.Drawing.Point(20, 20);
+			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(33, 13);
+			this.label1.Size = new System.Drawing.Size(49, 20);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Coins";
 			// 
 			// labelCoins
 			// 
 			this.labelCoins.AutoSize = true;
-			this.labelCoins.Location = new System.Drawing.Point(58, 13);
+			this.labelCoins.Location = new System.Drawing.Point(87, 20);
+			this.labelCoins.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.labelCoins.Name = "labelCoins";
-			this.labelCoins.Size = new System.Drawing.Size(35, 13);
+			this.labelCoins.Size = new System.Drawing.Size(51, 20);
 			this.labelCoins.TabIndex = 1;
 			this.labelCoins.Text = "label2";
 			// 
 			// listBoxReceived
 			// 
 			this.listBoxReceived.FormattingEnabled = true;
-			this.listBoxReceived.Location = new System.Drawing.Point(16, 121);
+			this.listBoxReceived.ItemHeight = 20;
+			this.listBoxReceived.Location = new System.Drawing.Point(24, 186);
+			this.listBoxReceived.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.listBoxReceived.Name = "listBoxReceived";
-			this.listBoxReceived.Size = new System.Drawing.Size(628, 251);
+			this.listBoxReceived.Size = new System.Drawing.Size(940, 384);
 			this.listBoxReceived.TabIndex = 2;
 			// 
 			// checkBoxAcceptMoney
 			// 
 			this.checkBoxAcceptMoney.AutoSize = true;
-			this.checkBoxAcceptMoney.Location = new System.Drawing.Point(12, 41);
+			this.checkBoxAcceptMoney.Location = new System.Drawing.Point(18, 63);
+			this.checkBoxAcceptMoney.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.checkBoxAcceptMoney.Name = "checkBoxAcceptMoney";
-			this.checkBoxAcceptMoney.Size = new System.Drawing.Size(101, 21);
+			this.checkBoxAcceptMoney.Size = new System.Drawing.Size(136, 24);
 			this.checkBoxAcceptMoney.TabIndex = 3;
 			this.checkBoxAcceptMoney.Text = "Accept money";
 			this.checkBoxAcceptMoney.UseVisualStyleBackColor = true;
@@ -78,9 +83,10 @@
 			// 
 			// buttonStart
 			// 
-			this.buttonStart.Location = new System.Drawing.Point(423, 28);
+			this.buttonStart.Location = new System.Drawing.Point(634, 43);
+			this.buttonStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.buttonStart.Name = "buttonStart";
-			this.buttonStart.Size = new System.Drawing.Size(75, 23);
+			this.buttonStart.Size = new System.Drawing.Size(112, 35);
 			this.buttonStart.TabIndex = 4;
 			this.buttonStart.Text = "Start";
 			this.buttonStart.UseVisualStyleBackColor = true;
@@ -89,9 +95,10 @@
 			// buttonStop
 			// 
 			this.buttonStop.Enabled = false;
-			this.buttonStop.Location = new System.Drawing.Point(504, 28);
+			this.buttonStop.Location = new System.Drawing.Point(756, 43);
+			this.buttonStop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.buttonStop.Name = "buttonStop";
-			this.buttonStop.Size = new System.Drawing.Size(75, 23);
+			this.buttonStop.Size = new System.Drawing.Size(112, 35);
 			this.buttonStop.TabIndex = 5;
 			this.buttonStop.Text = "Stop";
 			this.buttonStop.UseVisualStyleBackColor = true;
@@ -101,17 +108,19 @@
 			// 
 			this.comboBoxPorts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBoxPorts.FormattingEnabled = true;
-			this.comboBoxPorts.Location = new System.Drawing.Point(296, 30);
+			this.comboBoxPorts.Location = new System.Drawing.Point(444, 46);
+			this.comboBoxPorts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.comboBoxPorts.Name = "comboBoxPorts";
-			this.comboBoxPorts.Size = new System.Drawing.Size(121, 21);
+			this.comboBoxPorts.Size = new System.Drawing.Size(180, 28);
 			this.comboBoxPorts.TabIndex = 6;
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(247, 33);
+			this.label2.Location = new System.Drawing.Point(370, 51);
+			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(29, 13);
+			this.label2.Size = new System.Drawing.Size(42, 20);
 			this.label2.TabIndex = 7;
 			this.label2.Text = "Port:";
 			// 
@@ -119,16 +128,17 @@
 			// 
 			this.labelConnectionState.AutoSize = true;
 			this.labelConnectionState.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.labelConnectionState.Location = new System.Drawing.Point(247, 75);
+			this.labelConnectionState.Location = new System.Drawing.Point(370, 115);
+			this.labelConnectionState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.labelConnectionState.Name = "labelConnectionState";
 			this.labelConnectionState.Size = new System.Drawing.Size(0, 29);
 			this.labelConnectionState.TabIndex = 8;
 			// 
 			// VendingMachineMainForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(668, 394);
+			this.ClientSize = new System.Drawing.Size(1002, 606);
 			this.Controls.Add(this.labelConnectionState);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.comboBoxPorts);
@@ -138,8 +148,9 @@
 			this.Controls.Add(this.listBoxReceived);
 			this.Controls.Add(this.labelCoins);
 			this.Controls.Add(this.label1);
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "VendingMachineMainForm";
-			this.Text = "VendingMachineMainForm";
+			this.Text = "Vending Machine v2016.0601";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
 			this.Load += new System.EventHandler(this.VendingMachineMainForm_Load);
 			this.ResumeLayout(false);

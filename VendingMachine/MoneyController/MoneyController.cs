@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 using MoneyController.Interfaces;
 
@@ -60,7 +59,7 @@ namespace MoneyController
 
 		private void OnMoneyReceived(int channel)
 		{
-			if (_moneyChannelMapping.ContainsKey(channel))
+			if (!_moneyChannelMapping.ContainsKey(channel))
 			{
 				throw new ArgumentOutOfRangeException(nameof(channel), channel, "Channel to value mapping is not defined");			
 			}

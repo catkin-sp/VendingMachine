@@ -35,7 +35,7 @@ namespace VendingMachine
 		private void ComPortPortStatusChanged(object sender, SerialPortStatusChangedEventHandlerArgs args)
 		{
 			Action action = () => ShowOnlineStatus(args.Online);
-			Invoke(action);
+			BeginInvoke(action);
 		}
 
 		private static Dictionary<int, decimal> GetChannelMapping()
@@ -54,7 +54,7 @@ namespace VendingMachine
 		private void MoneyControllerMoneyReceived(object sender, MoneyReceivedEventHandlerArgs args)
 		{
 			_coins += args.Value;
-			ShowCoins();
+			BeginInvoke((Action)ShowCoins);
 		}
 
 		private void ShowCoins()
@@ -129,7 +129,7 @@ namespace VendingMachine
 			Logger.Info(message);
 
 			Action action = () => AddInfo(message);
-			Invoke(action);
+			BeginInvoke(action);
 		}
 	}
 }
