@@ -16,7 +16,14 @@ namespace MoneyController
 
 		public event SerialPortBlockReceivedEventHandler BlockReceived;
 		public event SerialPortStatusChangedEventHandler PortStatusChanged;
-		
+
+		public CommPort(ICommunicaitonLog log)
+		{
+			_serialPort = new SerialPort { BaudRate = 19200 };
+			_log = log;
+			_serialPort.DataReceived += serialPort_DataReceived;
+		}
+
 		public void Send(string command)
 		{
 			if (!_serialPort.IsOpen)
@@ -71,13 +78,6 @@ namespace MoneyController
 		private bool IsOnline()
 		{
 			return (DateTime.Now - _lastReceivedBlockTime).TotalSeconds < 5;
-		}
-
-		public CommPort(ICommunicaitonLog log)
-		{
-			 _serialPort = new SerialPort { BaudRate = 19200 };
-			_log = log;
-			_serialPort.DataReceived += serialPort_DataReceived;
 		}
 
 		void serialPort_DataReceived(object s, SerialDataReceivedEventArgs e)

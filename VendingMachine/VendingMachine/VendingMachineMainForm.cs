@@ -42,12 +42,12 @@ namespace VendingMachine
 		{
 			return new Dictionary<int, decimal>()
 			{
-				{ 1, 2 },		// 1 channel 2.00 EUR
-				{ 2, 1 },		// 2 channel 1.00 EUR
-				{ 3, 0.5m },	// 3 channel 0.50 EUR
-				{ 4, 0.2m },	// 4 channel 0.20 EUR
-				{ 5, 0.1m },	// 5 channel 0.10 EUR
-				{ 6, 0.05m },	// 6 channel 0.05 EUR
+				{ 3, 2 },		// 1 channel 2.00 EUR
+				{ 4, 1 },		// 2 channel 1.00 EUR
+				{ 6, 0.5m },	// 3 channel 0.50 EUR
+				{ 5, 0.2m },	// 4 channel 0.20 EUR
+				{ 1, 0.1m },	// 5 channel 0.10 EUR
+				{ 2, 0.05m },	// 6 channel 0.05 EUR
 			};
 		}
 
