@@ -1,6 +1,6 @@
 ﻿namespace VendingMachine
 {
-	partial class VendingMachineMainForm
+	partial class ArduinoLoggerMainForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,58 +28,22 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.label1 = new System.Windows.Forms.Label();
-			this.labelCoins = new System.Windows.Forms.Label();
 			this.listBoxReceived = new System.Windows.Forms.ListBox();
-			this.checkBoxAcceptMoney = new System.Windows.Forms.CheckBox();
 			this.buttonStart = new System.Windows.Forms.Button();
 			this.buttonStop = new System.Windows.Forms.Button();
 			this.comboBoxPorts = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.labelConnectionState = new System.Windows.Forms.Label();
 			this.SuspendLayout();
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(20, 20);
-			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(49, 20);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Coins";
-			// 
-			// labelCoins
-			// 
-			this.labelCoins.AutoSize = true;
-			this.labelCoins.Location = new System.Drawing.Point(87, 20);
-			this.labelCoins.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.labelCoins.Name = "labelCoins";
-			this.labelCoins.Size = new System.Drawing.Size(51, 20);
-			this.labelCoins.TabIndex = 1;
-			this.labelCoins.Text = "label2";
 			// 
 			// listBoxReceived
 			// 
 			this.listBoxReceived.FormattingEnabled = true;
 			this.listBoxReceived.ItemHeight = 20;
-			this.listBoxReceived.Location = new System.Drawing.Point(24, 186);
+			this.listBoxReceived.Location = new System.Drawing.Point(24, 106);
 			this.listBoxReceived.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.listBoxReceived.Name = "listBoxReceived";
-			this.listBoxReceived.Size = new System.Drawing.Size(940, 384);
+			this.listBoxReceived.Size = new System.Drawing.Size(940, 464);
 			this.listBoxReceived.TabIndex = 2;
-			// 
-			// checkBoxAcceptMoney
-			// 
-			this.checkBoxAcceptMoney.AutoSize = true;
-			this.checkBoxAcceptMoney.Location = new System.Drawing.Point(18, 63);
-			this.checkBoxAcceptMoney.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.checkBoxAcceptMoney.Name = "checkBoxAcceptMoney";
-			this.checkBoxAcceptMoney.Size = new System.Drawing.Size(136, 24);
-			this.checkBoxAcceptMoney.TabIndex = 3;
-			this.checkBoxAcceptMoney.Text = "Accept money";
-			this.checkBoxAcceptMoney.UseVisualStyleBackColor = true;
-			this.checkBoxAcceptMoney.CheckedChanged += new System.EventHandler(this.checkBoxAcceptMoney_CheckedChanged);
 			// 
 			// buttonStart
 			// 
@@ -124,33 +88,19 @@
 			this.label2.TabIndex = 7;
 			this.label2.Text = "Port:";
 			// 
-			// labelConnectionState
-			// 
-			this.labelConnectionState.AutoSize = true;
-			this.labelConnectionState.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.labelConnectionState.Location = new System.Drawing.Point(370, 115);
-			this.labelConnectionState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.labelConnectionState.Name = "labelConnectionState";
-			this.labelConnectionState.Size = new System.Drawing.Size(0, 29);
-			this.labelConnectionState.TabIndex = 8;
-			// 
-			// VendingMachineMainForm
+			// ArduinoLoggerMainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1002, 606);
-			this.Controls.Add(this.labelConnectionState);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.comboBoxPorts);
 			this.Controls.Add(this.buttonStop);
 			this.Controls.Add(this.buttonStart);
-			this.Controls.Add(this.checkBoxAcceptMoney);
 			this.Controls.Add(this.listBoxReceived);
-			this.Controls.Add(this.labelCoins);
-			this.Controls.Add(this.label1);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.Name = "VendingMachineMainForm";
-			this.Text = "Vending Machine v2016.0609";
+			this.Name = "ArduinoLoggerMainForm";
+			this.Text = "Arduino Logger v2016.0609";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
 			this.Load += new System.EventHandler(this.VendingMachineMainForm_Load);
 			this.ResumeLayout(false);
@@ -159,16 +109,11 @@
 		}
 
 		#endregion
-
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label labelCoins;
 		private System.Windows.Forms.ListBox listBoxReceived;
-		private System.Windows.Forms.CheckBox checkBoxAcceptMoney;
 		private System.Windows.Forms.Button buttonStart;
 		private System.Windows.Forms.Button buttonStop;
 		private System.Windows.Forms.ComboBox comboBoxPorts;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label labelConnectionState;
 	}
 }
 

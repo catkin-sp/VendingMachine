@@ -11,56 +11,20 @@ using MoneyController.Interfaces;
 
 namespace VendingMachine
 {
-	public partial class VendingMachineMainForm : Form, ICommunicaitonLog
+	public partial class ArduinoLoggerMainForm : Form, ICommunicaitonLog
 	{
-		private readonly MoneyController.MoneyController _moneyController;
 		private readonly ICommPort _comPort;
 		private decimal _coins;
 		private static readonly ILog Logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-		public VendingMachineMainForm()
+		public ArduinoLoggerMainForm()
 		{
 			InitializeComponent();
-			ShowCoins();
 
 			XmlConfigurator.Configure();
 
 			_comPort = new CommPort(this);
-			_comPort.PortStatusChanged += ComPortPortStatusChanged;
-			
-			_moneyController = new MoneyController.MoneyController(_comPort, GetChannelMapping());
-			_moneyController.MoneyReceived += MoneyControllerMoneyReceived;
         }
-
-		private void ComPortPortStatusChanged(object sender, SerialPortStatusChangedEventHandlerArgs args)
-		{
-			Action action = () => ShowOnlineStatus(args.Online);
-			BeginInvoke(action);
-		}
-
-		private static Dictionary<int, decimal> GetChannelMapping()
-		{
-			return new Dictionary<int, decimal>()
-			{
-				{ 3, 2 },		// 1 channel 2.00 EUR
-				{ 4, 1 },		// 2 channel 1.00 EUR
-				{ 6, 0.5m },	// 3 channel 0.50 EUR
-				{ 5, 0.2m },	// 4 channel 0.20 EUR
-				{ 1, 0.1m },	// 5 channel 0.10 EUR
-				{ 2, 0.05m },	// 6 channel 0.05 EUR
-			};
-		}
-
-		private void MoneyControllerMoneyReceived(object sender, MoneyReceivedEventHandlerArgs args)
-		{
-			_coins += args.Value;
-			BeginInvoke((Action)ShowCoins);
-		}
-
-		private void ShowCoins()
-		{
-			labelCoins.Text = _coins.ToString(CultureInfo.InvariantCulture);
-		}
 
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
@@ -75,11 +39,6 @@ namespace VendingMachine
 			{
 				listBoxReceived.Items.RemoveAt(100);
 			}
-		}
-
-		private void checkBoxAcceptMoney_CheckedChanged(object sender, System.EventArgs e)
-		{
-			_moneyController.Enabled = checkBoxAcceptMoney.Checked;
 		}
 
 		private void VendingMachineMainForm_Load(object sender, System.EventArgs e)
@@ -99,7 +58,6 @@ namespace VendingMachine
 
 		private void buttonStart_Click(object sender, System.EventArgs e)
 		{
-			labelConnectionState.Text = string.Empty;
 			_comPort.Open(comboBoxPorts.Text);
 			EnablePortControls();
 		}
@@ -113,15 +71,8 @@ namespace VendingMachine
 
 		private void buttonStop_Click(object sender, System.EventArgs e)
 		{
-			labelConnectionState.Text = string.Empty;
 			_comPort.Close();
 			EnablePortControls();
-		}
-
-		private void ShowOnlineStatus(bool online)
-		{
-			labelConnectionState.Text = online ? "Online" : "Disconnected";
-			labelConnectionState.ForeColor = online ? Color.Green : Color.Red;
 		}
 
 		public void Info(string message)

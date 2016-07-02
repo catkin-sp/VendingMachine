@@ -7,8 +7,8 @@
     <ProjectGuid>{03297EE7-0779-43EC-A926-AA5A381D23B2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MoneyController</RootNamespace>
-    <AssemblyName>MoneyController</AssemblyName>
+    <RootNamespace>SerialPortCommunication</RootNamespace>
+    <AssemblyName>SerialPortCommunication</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,9 +43,6 @@
     <Compile Include="CommPort.cs" />
     <Compile Include="Interfaces\ICommPort.cs" />
     <Compile Include="Interfaces\ICommunicaitonLog.cs" />
-    <Compile Include="MoneyController.cs" />
-    <Compile Include="MoneyReceivedEventHandler.cs" />
-    <Compile Include="MoneyReceivedEventHandlerArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerialPortBlockReceivedEventHandler.cs" />
     <Compile Include="SerialPortBlockReceivedEventHandlerArgs.cs" />

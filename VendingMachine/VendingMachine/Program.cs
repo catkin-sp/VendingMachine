@@ -13,7 +13,7 @@ namespace VendingMachine
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new VendingMachineMainForm());
+			Application.Run(new ArduinoLoggerMainForm());
 		}
 	}
 }
